@@ -1,0 +1,4 @@
+web3=5.17.0=pypi_0
+ipfsapi=0.4.4=pypi_0
+ipfshttpclient=0.4.13.2=pypi_0
+flask=1.1.2=pypi_0

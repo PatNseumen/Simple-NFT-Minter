@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+body {background-color: powderblue;}
+label   {color: blue;}
+p    {color: red;}
+h5 {color: red;}
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>
+      <title>only mint function</title>
+  </head>
+  <body>
+  <div class="container mt-5" >
+      <div class="card mx-auto" style="width: 30rem;">
+          <div class="card-body">
+               <h5 class="card-title text-center">MINT Function</h5>
+                  <form method=post enctype=multipart/form-data>
+                     <div class="form-group">
+                            <label class="form-check-label mr-5"> Network_type</label>
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="options" id="option1" value="Ropston" checked>
+                                <label class="form-check-label" for="option1">Ropston</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="options" id="option2" value="Polygon">
+                                <label class="form-check-label" for="option2">Polygon</label>
+                                </div><br>
+                                    {%if alert%}
+                                        <h1>{{alert}}</h1>
+                                    {% endif %}
+
+                                {%if noparam%}
+                                <label class="form-check-label">Please select the non param function
+                                    <select name="noparam" class="selectpicker form-control">
+                                    {% for i in noparam %}
+                                    <option value="{{i}}">{{i}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </label>
+                               {% endif %}
+
+                               {%if param%}
+                                <label class="form-check-label" >Please select the with param function
+                                <select name="param" class="selectpicker form-control">
+                                    {% for i in param %}
+                                    <option value="{{i}}">{{i}}</option>
+                                    {% endfor %}
+                                </select>
+                                </label>
+                              {% endif %}<br>
+
+                              {%if func%}
+                              {% for i in range(lenofparam) %}
+                                  {% if func[i]['name'] == "uri" %}
+                                    <label>{{func[i]['name']}}</label>
+                                    <input type="url"  name="fun_values" value="{{url}}">
+                                  {% elif func[i]['type'] == "uint256"%}
+                                        <label>{{func[i]['name']}}</label>
+                                        <input type="number"   name="fun_values">
+                                  {% else %}
+                                    <label>{{func[i]['name']}}</label>
+                                    <input type="text"   name="fun_values">
+                                  {% endif %}
+                              {% endfor %}
+                              {% endif %}<br>
+
+                              {% if file %}
+                                  <div class="form-group">
+                                      <label class="form-check-label" for="file_name">{{file}}</label>
+                                      <input type="file" class="form-control-file" id="file_name" name="file" value={{filename}}>
+                                  </div>
+                              {% endif %}<br>
+
+                              {% if button %}
+                                 <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" name="submit_a" value="submit_a"> {{button}}</button>
+                                </div>
+                              {% endif %}
+                     </div>
+                  </form>
+          </div>
+      </div>
+  </div>
+  </body>
+</html>
